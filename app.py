@@ -6,33 +6,33 @@ app = Flask(__name__)
 
 def get_message_db():
     try:
-        return g.message_db
+        return g.message_db #check to see if the database exists
     except:
-        g.message_db = sqlite3.connect("message_db.sqlite")
+        g.message_db = sqlite3.connect("message_db.sqlite") #create database if doesn't exist
         cmd = \
         """
         CREATE TABLE IF NOT EXISTS messages (
-            handle TEXT,
+            handle TEXT, 
             message TEXT
         )
         """
         with g.message_db:
-            cursor = g.message_db.cursor()
-            cursor.execute(cmd)
+            cursor = g.message_db.cursor() 
+            cursor.execute(cmd) #creates a table called messages with columns handle and message
         return g.message_db
     
 def insert_message(request):
-    handle = request.form["name"]
-    message = request.form["message"]
+    handle = request.form["name"] #extract handle
+    message = request.form["message"] #extract message
 
-    db = get_message_db()
+    db = get_message_db() #work with database using method from aboe
     cmd = \
     """
     INSERT INTO messages (handle, message) VALUES (?, ?)
     """
     with db:
         cursor = db.cursor()
-        cursor.execute(cmd, (handle, message))
+        cursor.execute(cmd, (handle, message)) #execute cmd, inserting message and handl into table (parametrized)
         db.commit()
 
 def random_messages(n):
@@ -44,7 +44,7 @@ def random_messages(n):
     with db:
         cursor = db.cursor()
         cursor.execute(cmd, (n,))
-        selected_messages = cursor.fetchall()
+        selected_messages = cursor.fetchall() #fethces all responses for future display
         return selected_messages
     
 @app.route('/submit/', methods=['POST', 'GET'])
@@ -53,11 +53,11 @@ def submit():
         return render_template('submit.html', thanks=False)
     else:
         insert_message(request)
-        return render_template('submit.html', thanks=True)
+        return render_template('submit.html', thanks=True) #makes sure to post response
 
 @app.route('/view/')
 def view():
-    messages = random_messages(5)
+    messages = random_messages(5) #caps the number of messages shown at 5
     return render_template('view.html', messages=messages)
 
 if __name__ == "__main__":
