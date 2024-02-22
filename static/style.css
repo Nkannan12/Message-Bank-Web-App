@@ -1,0 +1,59 @@
+html {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: aquamarine;
+    padding: 1rem;
+}
+
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: blue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+a {
+    color: CornflowerBlue;
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid lightgray;
+}
+
+nav {
+    background: whitesmoke;
+    padding: 0 0.5rem;
+    border-radius: 100px;
+}
+
+nav ul  {
+    display: flex;
+    list-style: circle;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 0.5rem;
+}
+
+.content {
+    padding: 0 1rem 1rem;
+    background: antiquewhite;
+    border-radius: 25px;
+}
+
+.flash {
+    text-align: center;
+    margin: 1em 0;
+    padding: 1em;
+    background: salmon;
+    border: 1px solid black;
+}

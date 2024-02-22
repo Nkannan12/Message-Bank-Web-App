@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Some Previously Submitted Messages{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for m in messages %}
+            <li>{{ m[1] }}</li>
+            <li>From <em>{{ m[0] }}</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
