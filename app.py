@@ -1,10 +1,3 @@
-'''
-At the command line, run 
-
-conda activate PIC16B-24W
-export FLASK_ENV=development
-flask run
-'''
 from flask import Flask, g, render_template, request
 import sqlite3
 import os
@@ -41,7 +34,6 @@ def insert_message(request):
         cursor = db.cursor()
         cursor.execute(cmd, (handle, message))
         db.commit()
-        db.close()
 
 def random_messages(n):
     db = get_message_db()
@@ -53,10 +45,9 @@ def random_messages(n):
         cursor = db.cursor()
         cursor.execute(cmd, (n,))
         selected_messages = cursor.fetchall()
-        db.close()
         return selected_messages
     
-@app.route('/submit', methods=['POST', 'GET'])
+@app.route('/submit/', methods=['POST', 'GET'])
 def submit():
     if request.method == 'GET':
         return render_template('submit.html', thanks=False)
@@ -64,7 +55,7 @@ def submit():
         insert_message(request)
         return render_template('submit.html', thanks=True)
 
-@app.route('/view')
+@app.route('/view/')
 def view():
     messages = random_messages(5)
     return render_template('view.html', messages=messages)

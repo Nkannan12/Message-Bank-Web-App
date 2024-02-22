@@ -34,19 +34,19 @@ nav {
 
 nav ul  {
     display: flex;
-    list-style: circle;
-    margin: 0;
+    list-style: none;
+    margin: 1rem;
     padding: 0;
 }
 
 nav ul li a {
     display: block;
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 .content {
     padding: 0 1rem 1rem;
-    background: antiquewhite;
+    background: white;
     border-radius: 25px;
 }
 

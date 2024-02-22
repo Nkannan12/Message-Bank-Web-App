@@ -7,8 +7,9 @@
 {% block content %}
     <ul>
         {% for m in messages %}
-            <li>{{ m[1] }}</li>
-            <li>From <em>{{ m[0] }}</em></li>
+            <li><em>"{{ m[1] }}"</em></li>
+            <li>Contributed by: {{ m[0] }}</li>
+            <br>
         {% endfor %}
     </ul>
 {% endblock %}
